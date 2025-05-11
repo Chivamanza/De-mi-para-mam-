@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Carta para mamá</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f5f5f5;
+            margin: 0;
+        }
+        
+        .envelope {
+            position: relative;
+            width: 300px;
+            cursor: pointer;
+        }
+        
+        .envelope-front {
+            background-color: #e74c3c;
+            height: 180px;
+            border-radius: 5px;
+            position: relative;
+            z-index: 2;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+        }
+        
+        .envelope-flap {
+            width: 0;
+            height: 0;
+            border-left: 150px solid transparent;
+            border-right: 150px solid transparent;
+            border-bottom: 80px solid #c0392b;
+            position: absolute;
+            top: -80px;
+            left: 0;
+            transform-origin: top;
+            transition: transform 0.5s;
+            z-index: 3;
+        }
+        
+        .envelope.open .envelope-flap {
+            transform: rotateX(180deg);
+        }
+        
+        .letter {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            right: 20px;
+            background: white;
+            padding: 20px;
+            border-radius: 3px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            transform: translateY(0);
+            transition: transform 0.5s, z-index 0.5s;
+            z-index: 1;
+            height: 120px;
+            overflow: hidden;
+        }
+        
+        .envelope.open .letter {
+            transform: translateY(-100px);
+            z-index: 4;
+            height: auto;
+        }
+        
+        .open-btn {
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            padding: 8px 16px;
+            background-color: #3498db;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            z-index: 5;
+        }
+        
+        .open-btn:hover {
+            background-color: #2980b9;
+        }
+        
+        h2 {
+            color: #2c3e50;
+            margin-top: 0;
+        }
+        
+        p {
+            color: #34495e;
+            line-height: 1.5;
+        }
+        
+        .signature {
+            font-style: italic;
+            text-align: right;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="envelope" id="envelope">
+        <div class="envelope-front">
+            <div class="envelope-flap"></div>
+            <button class="open-btn" id="openBtn">Abrir carta</button>
+        </div>
+        <div class="letter">
+            <h2>Querida madre</h2>
+            <p>Si esta leyendo esto es porque ya sabe la razón por la que me quedé varias noches madrugando, solo quería mostrar que el sacrificio que estoy haciendo para tener un mejor futuro esta valiendo la pena, perdón por muchas veces no ser un buen hijo, perdón porque se que a veces cometo o llegue a coneter errores que hicieron que perdiera su confianza en mi, y se que mi comportamiento no es el mejor o el mas adecuado pero a veces no se ni como sigo adelante creo que es por el motivo de que anhelo tanto escuchar un ""estoy orgulloso de ti hijo" pero mis malas decisiones cada vez me hacen estar lejos de escucharlo, pero el amor que les tengo es grande y no importa cuantas veces diga que puedo solo siempre necesitare de su amor para yo seguir adelante te amo mucho</p>
+            <p>La vida está llena de pequeños momentos especiales, y muchos de los míos los he compartido contigo.</p>
+            <div class="signature">Con cariño,<br>Su hijito</div>
+        </div>
+    </div>
+
+    <script>
+        const envelope = document.getElementById('envelope');
+        const openBtn = document.getElementById('openBtn');
+        
+        openBtn.addEventListener('click', function() {
+            envelope.classList.toggle('open');
+            
+            if (envelope.classList.contains('open')) {
+                openBtn.textContent = 'Cerrar carta';
+            } else {
+                openBtn.textContent = 'Abrir carta';
+       
+            }
+        });
+    </script>
+</body>
+</html>
