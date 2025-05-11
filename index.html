@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Carta para mamá</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background-color: #f82bff;
+            margin: 0;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+        
+        .envelope {
+            position: relative;
+            width: 100%;
+            max-width: 300px;
+            cursor: pointer;
+            margin: 20px;
+        }
+        
+        .envelope-front {
+            background-color: #c440ff;
+            height: 180px;
+            border-radius: 20px;
+            position: relative;
+            z-index: 2;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+        }
+        
+        .envelope-flap {
+            width: 0;
+            height: 0;
+            border-left: 150px solid transparent;
+            border-right: 150px solid transparent;
+            border-bottom: 80px solid #a83232;
+            position: absolute;
+            top: -80px;
+            left: 50%;
+            transform: translateX(-50%);
+            transform-origin: top;
+            transition: transform 0.5s;
+            z-index: 3;
+        }
+        
+        .envelope.open .envelope-flap {
+            transform: translateX(-50%) rotateX(180deg);
+        }
+        
+        .letter {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            right: 20px;
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            transform: translateY(0);
+            transition: transform 0.5s, z-index 0.5s;
+            z-index: 1;
+            height: 120px;
+            overflow: hidden;
+        }
+        
+        .envelope.open .letter {
+            transform: translateY(-100px);
+            z-index: 4;
+            height: auto;
+            min-height: 200px;
+        }
+        
+        .open-btn {
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            padding: 10px 20px;
+            background-color: #3498db;
+            color: white;
+            border: none;
+            border-radius: 20px;
+            cursor: pointer;
+            z-index: 5;
+            font-weight: bold;
+            transition: all 0.3s;
+        }
+        
+        .open-btn:hover {
+            background-color: #121212;
+            transform: translateX(-50%) scale(1.05);
+        }
+        
+        h2 {
+            color: #2c3e50;
+            margin-top: 0;
+            text-align: center;
+        }
+        
+        p {
+            color: #34495e;
+            line-height: 1.6;
+            text-align: justify;
+        }
+        
+        .signature {
+            font-style: italic;
+            text-align: right;
+            margin-top: 20px;
+            font-weight: bold;
+        }
+
+        .heart {
+            color: red;
+            font-size: 1.2em;
+        }
+    </style>
+</head>
+<body>
+    <div class="envelope" id="envelope">
+        <div class="envelope-front">
+            <div class="envelope-flap"></div>
+            <button class="open-btn" id="openBtn">Abrir carta</button>
+        </div>
+        <div class="letter">
+            <h2>Querida madre <span class="heart">❤️</span></h2>
+            <p>Si estás leyendo esto es porque ya sabes la razón por la que me quedé varias noches madrugando. Solo quería mostrarte que el sacrificio que estoy haciendo para tener un mejor futuro está valiendo la pena.</p>
+            <p>Perdón por muchas veces no ser un buen hijo, perdón porque sé que a veces cometí errores que hicieron que perdieras tu confianza en mí. Sé que mi comportamiento no es el mejor o el más adecuado, pero a veces no sé ni cómo sigo adelante. Creo que es porque anhelo tanto escuchar un "estoy orgullosa de ti, hijo", pero mis malas decisiones cada vez me hacen estar lejos de escucharlo.</p>
+            <p>El amor que les tengo es grande y no importa cuántas veces diga que puedo solo, siempre necesitaré de su amor para seguir adelante. Te amo mucho.</p>
+            <div class="signature">Con todo mi cariño,<br>Tu hijito</div>
+        </div>
+    </div>
+
+    <script>
+        const envelope = document.getElementById('envelope');
+        const openBtn = document.getElementById('openBtn');
+        
+        openBtn.addEventListener('click', function() {
+            envelope.classList.toggle('open');
+            
+            if (envelope.classList.contains('open')) {
+                openBtn.textContent = 'Cerrar carta';
+            } else {
+                openBtn.textContent = 'Abrir carta';
+            }
+        });
+    </script>
+</body>
+</html>
